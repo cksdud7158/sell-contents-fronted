@@ -4,7 +4,7 @@
   @apply block border p-3 rounded mb-4;
 }
 .container {
-  @apply max-w-screen-2xl mx-auto;
+  @apply max-w-screen-2xl mx-auto px-3 sm:px-0;
 }
 .link {
   @apply  text-blue-400 hover:underline;
@@ -13,6 +13,5 @@
 .btn {
   @apply text-lg font-medium focus:outline-none text-white py-4  transition-colors ;
 }
-
 
 @tailwind utilities;

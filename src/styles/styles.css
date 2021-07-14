@@ -596,6 +596,15 @@ video {
   margin-left: auto;
   margin-right: auto;
   max-width: 1536px;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
 }
 
 .link {
@@ -11569,6 +11578,22 @@ video {
 
 .h-screen {
   height: 100vh;
+}
+
+.h-withoutHeader {
+  height: calc(100vh - 4rem);
+}
+
+.h-50vh {
+  height: 50vh;
+}
+
+.h-25vh {
+  height: 25vh;
+}
+
+.h-30vh {
+  height: 30vh;
 }
 
 .text-xs {
@@ -42250,6 +42275,22 @@ video {
     height: 100vh;
   }
 
+  .sm\:h-withoutHeader {
+    height: calc(100vh - 4rem);
+  }
+
+  .sm\:h-50vh {
+    height: 50vh;
+  }
+
+  .sm\:h-25vh {
+    height: 25vh;
+  }
+
+  .sm\:h-30vh {
+    height: 30vh;
+  }
+
   .sm\:text-xs {
     font-size: 0.75rem;
     line-height: 1rem;
@@ -72841,6 +72882,22 @@ video {
 
   .md\:h-screen {
     height: 100vh;
+  }
+
+  .md\:h-withoutHeader {
+    height: calc(100vh - 4rem);
+  }
+
+  .md\:h-50vh {
+    height: 50vh;
+  }
+
+  .md\:h-25vh {
+    height: 25vh;
+  }
+
+  .md\:h-30vh {
+    height: 30vh;
   }
 
   .md\:text-xs {
@@ -103436,6 +103493,22 @@ video {
     height: 100vh;
   }
 
+  .lg\:h-withoutHeader {
+    height: calc(100vh - 4rem);
+  }
+
+  .lg\:h-50vh {
+    height: 50vh;
+  }
+
+  .lg\:h-25vh {
+    height: 25vh;
+  }
+
+  .lg\:h-30vh {
+    height: 30vh;
+  }
+
   .lg\:text-xs {
     font-size: 0.75rem;
     line-height: 1rem;
@@ -134029,6 +134102,22 @@ video {
     height: 100vh;
   }
 
+  .xl\:h-withoutHeader {
+    height: calc(100vh - 4rem);
+  }
+
+  .xl\:h-50vh {
+    height: 50vh;
+  }
+
+  .xl\:h-25vh {
+    height: 25vh;
+  }
+
+  .xl\:h-30vh {
+    height: 30vh;
+  }
+
   .xl\:text-xs {
     font-size: 0.75rem;
     line-height: 1rem;
@@ -164620,6 +164709,22 @@ video {
 
   .\32xl\:h-screen {
     height: 100vh;
+  }
+
+  .\32xl\:h-withoutHeader {
+    height: calc(100vh - 4rem);
+  }
+
+  .\32xl\:h-50vh {
+    height: 50vh;
+  }
+
+  .\32xl\:h-25vh {
+    height: 25vh;
+  }
+
+  .\32xl\:h-30vh {
+    height: 30vh;
   }
 
   .\32xl\:text-xs {
