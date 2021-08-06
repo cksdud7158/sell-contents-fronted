@@ -1,32 +1,34 @@
-import React from "react";
-import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import { TextField, Checkbox } from "@material-ui/core";
+import * as React from "react";
+import { useForm } from "react-hook-form";
 
-interface IFormInputs {
-  TextField: string;
-  MyCheckbox: boolean;
-}
+type FormInputs = {
+  firstName: string;
+  lastName: string;
+};
 
-export function FindUserInfo() {
-  const { handleSubmit, control, reset, watch, register } =
-    useForm<IFormInputs>({
-      mode: "onChange",
-    });
-  const onSubmit: SubmitHandler<IFormInputs> = (data) => console.log(data);
+export const FindUserInfo = () => {
+  const { register, handleSubmit, setValue } = useForm<FormInputs>();
 
-  console.log(watch());
+  const onSubmit = (data: FormInputs) => console.log(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {/* <Controller
-        name="MyCheckbox"
-        control={control}
-        defaultValue={false}
-        rules={{ required: true }}
-        render={({ field }) => <Checkbox {...field} />}
-      /> */}
-      <input type="checkbox" {...register("MyCheckbox")} />
+      <input {...register("firstName", { required: true })} />
+      <input {...register("lastName", { required: true })} />
+      <button onClick={() => setValue("firstName", "Bill")}>
+        Set First Name Value
+      </button>
+      <button
+        onClick={() =>
+          setValue("lastName", "Luo", {
+            shouldValidate: true,
+            shouldDirty: true,
+          })
+        }
+      >
+        Set Last Name
+      </button>
       <input type="submit" />
     </form>
   );
-}
+};

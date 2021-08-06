@@ -1,7 +1,8 @@
 @tailwind base;
 @tailwind components;
 .input {
-  @apply block border p-3 rounded mb-4;
+  @apply block border-b-2 p-3 rounded w-full;
+  
 }
 .container {
   @apply max-w-screen-2xl mx-auto px-3 sm:px-0;
@@ -12,6 +13,10 @@
 
 .btn {
   @apply text-lg font-medium focus:outline-none text-white py-4  transition-colors ;
+}
+
+.tempbtn {
+  @apply w-20 h-5 bg-red-300
 }
 
 @tailwind utilities;

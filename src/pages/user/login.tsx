@@ -27,12 +27,7 @@ export const LOGIN_MUTATION = gql`
 `;
 
 export const Login = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isValid },
-    getValues,
-  } = useForm<LoginInput>({
+  const { register, handleSubmit, formState, getValues } = useForm<LoginInput>({
     mode: "onChange",
   });
 
@@ -90,50 +85,52 @@ export const Login = () => {
 
           <form
             onSubmit={handleSubmit(loginBtnClick)}
-            className="w-full flex flex-col justify-center items-center "
+            className="w-full flex flex-col justify-center items-center px-2"
           >
             <label htmlFor="email" className="sr-only">
               Email address
             </label>
 
             <input
-              {...(register("email"),
-              {
-                required: "이메일을 입력해주세요",
+              {...register("email", {
+                required: "Email is required",
                 pattern:
                   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
               })}
               placeholder="Email"
               required
-              className="block border-b-2 p-3 rounded mb-4 w-full "
+              className="input mb-4"
             />
             <input
-              {...(register("password"),
-              { required: "비밀번호를 입력해주세요", minLength: 10 })}
+              {...register("password", {
+                required: "Password is required",
+                minLength: 10,
+              })}
               required
               type="password"
               placeholder="Password"
-              className="block border-b-2 border-grey-light w-full p-3 rounded mb-7"
+              className="input mb-7"
             />
             <Button
-              canClick={isValid}
+              canClick={formState.isValid}
               loading={loading}
               actionText={"로 그 인"}
             />
-            {errors.email?.type === "pattern" && (
+            {formState.errors.email?.type === "pattern" && (
               <FormError errorMessage={"이메일 형식이 맞지않습니다."} />
             )}
-            {errors.email?.message && (
-              <FormError errorMessage={errors.email?.message} />
+            {formState.errors.email?.message && (
+              <FormError errorMessage={formState.errors.email?.message} />
             )}
-            {errors.password?.message && (
-              <FormError errorMessage={errors.password?.message} />
+            {formState.errors.password?.message && (
+              <FormError errorMessage={formState.errors.password?.message} />
             )}
-            {errors.password?.type === "minLength" && (
+            {formState.errors.password?.type === "minLength" && (
               <FormError errorMessage="10 글자 이상 입력해주세요" />
             )}
             {errorMessageText && <FormError errorMessage={errorMessageText} />}
           </form>
+
           <hr className="my-3" />
           <div className=" flex justify-between px-1 pb-3">
             <Link

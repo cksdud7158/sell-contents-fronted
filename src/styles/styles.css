@@ -586,10 +586,10 @@ video {
 
 .input {
   border-radius: 0.25rem;
-  border-width: 1px;
+  border-bottom-width: 2px;
   display: block;
-  margin-bottom: 1rem;
   padding: 0.75rem;
+  width: 100%;
 }
 
 .container {
@@ -635,6 +635,13 @@ video {
   transition-property: background-color, border-color, color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+.tempbtn {
+  --tw-bg-opacity: 1;
+  background-color: rgba(252, 165, 165, var(--tw-bg-opacity));
+  height: 1.25rem;
+  width: 5rem
 }
 
 .space-y-0 > :not([hidden]) ~ :not([hidden]) {

@@ -9,3 +9,7 @@ npm install @headlessui/react
 ### apollo tools
 
 npm i apollo
+
+### firebase
+
+npm install firebase
