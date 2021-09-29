@@ -7,14 +7,6 @@
 // START Enums and Input Objects
 //==============================================================
 
-export enum SNS {
-  facebook = "facebook",
-  instagram = "instagram",
-  ticktok = "ticktok",
-  twitter = "twitter",
-  youtube = "youtube",
-}
-
 export enum UserRole {
   Admin = "Admin",
   Model = "Model",
@@ -26,7 +18,7 @@ export interface CreateAccountInput {
   email: string;
   password: string;
   nickName: string;
-  roles: UserRole[];
+  role: UserRole;
   phoneNum: string;
   snsUrls?: SnsUrlsInputType[] | null;
   verified?: boolean | null;
@@ -38,7 +30,7 @@ export interface LoginInput {
 }
 
 export interface SnsUrlsInputType {
-  snsName: SNS;
+  snsName: string;
   url: string;
 }
 

@@ -42,6 +42,7 @@ export const LoggedOutRouter = () => {
           </Route>
           <Route>
             <ErrorPage />
+            <div>로그인안됨 망할</div>
           </Route>
         </Switch>
       </div>

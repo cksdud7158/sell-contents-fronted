@@ -6,15 +6,14 @@ import { LOCALSTORAGE_TOKEN, SERVICE_NAME } from "../../constants";
 import { Button } from "../../components/button";
 import { authTokenVar, isLoggedInVar } from "../../apollo";
 import { FormError } from "../../components/form-error";
-import { LoginInput } from "../../__generated__/globalTypes";
+import { Link, useHistory } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+import kakaoLogo from "images/kakaoLogo.svg";
 import {
   loginMutation,
   loginMutationVariables,
-} from "../../__generated__/loginMutation";
-import { Link } from "react-router-dom";
-
-import { FcGoogle } from "react-icons/fc";
-import kakaoLogo from "images/kakaoLogo.svg";
+} from "__generated__/loginMutation";
+import { LoginInput } from "__generated__/globalTypes";
 
 export const LOGIN_MUTATION = gql`
   mutation loginMutation($loginInput: LoginInput!) {
@@ -31,6 +30,8 @@ export const Login = () => {
     mode: "onChange",
   });
 
+  const history = useHistory();
+
   const onCompleted = (data: loginMutation) => {
     const {
       login: { ok, token },
@@ -40,6 +41,7 @@ export const Login = () => {
       sessionStorage.setItem(LOCALSTORAGE_TOKEN, token);
       authTokenVar(token);
       isLoggedInVar(true);
+      history.push("/");
     }
   };
 
@@ -47,6 +49,7 @@ export const Login = () => {
     useMutation<loginMutation, loginMutationVariables>(LOGIN_MUTATION, {
       onCompleted,
     });
+
   let errorMessageText = "";
   if (loginMutationResult?.login.error) {
     errorMessageText = loginMutationResult.login.error.split("_")[0];

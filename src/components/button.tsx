@@ -19,7 +19,7 @@ export const Button: React.FC<IButtonProps> = ({
   return (
     <button
       onClick={click}
-      className={`w-full max-w-xl text-lg font-medium focus:outline-none text-white py-3 transition-colors  ${
+      className={`fullBtn  ${
         canClick
           ? "bg-blue-300 hover:bg-blue-500"
           : "bg-gray-400  cursor-not-allowed"

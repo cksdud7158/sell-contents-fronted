@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "../../components/button";
 import { TermsOfService } from "../../components/termsOfService";
@@ -11,39 +11,17 @@ type CheckType = {
 };
 
 export const SignUp1 = () => {
-  const { register, handleSubmit, formState, setValue, trigger } =
-    useForm<CheckType>({
-      mode: "onChange",
-      defaultValues: {
-        termsOfService: false,
-        collectionAndUseOfPersonalInformation: false,
-      },
-    });
+  const { register, handleSubmit, formState } = useForm<CheckType>({
+    mode: "onChange",
+    defaultValues: {
+      termsOfService: false,
+      collectionAndUseOfPersonalInformation: false,
+    },
+  });
 
   const history = useHistory();
   const nextBtn = () => {
     history.push("sign-up-2");
-  };
-
-  const [termsOfServiceState, setTermsOfServiceState] =
-    useState<boolean>(false);
-
-  const changeTermsOfServiceState = () => {
-    setTermsOfServiceState(!termsOfServiceState);
-    setValue("termsOfService", termsOfServiceState);
-    trigger();
-    console.log(formState.isValid);
-  };
-
-  const [
-    collectionAndUseOfPersonalInformationState,
-    setCollectionAndUseOfPersonalInformation,
-  ] = useState<boolean>(false);
-
-  const changeCollectionAndUseOfPersonalInformation = () => {
-    setCollectionAndUseOfPersonalInformation(
-      !collectionAndUseOfPersonalInformationState
-    );
   };
 
   return (
@@ -56,16 +34,12 @@ export const SignUp1 = () => {
           <div className="h-5/6 overflow-scroll px-4 border-2  border-gray-300 mb-1 ">
             <TermsOfService />
           </div>
-          <div
-            onClick={changeTermsOfServiceState}
-            className="flex items-center ml-2 text-sm"
-          >
+          <div className="flex items-center ml-2 text-sm">
             <input
               type="checkbox"
               {...register("termsOfService", {
                 required: true,
               })}
-              checked={termsOfServiceState}
             />
             <p>&nbsp;이용약관 동의 &nbsp;</p>
             <p>(필수)</p>
@@ -76,16 +50,12 @@ export const SignUp1 = () => {
           <div className="h-5/6 overflow-auto px-4 border-2  border-gray-300 mb-1">
             <CollectionAndUseOfPersonalInformation />
           </div>
-          <div
-            className="flex items-center ml-2 text-sm"
-            onClick={changeCollectionAndUseOfPersonalInformation}
-          >
+          <div className="flex items-center ml-2 text-sm">
             <input
               type="checkbox"
               {...register("collectionAndUseOfPersonalInformation", {
                 required: true,
               })}
-              checked={collectionAndUseOfPersonalInformationState}
             />
             <p>&nbsp;개인정보 수집 및 이용 &nbsp;</p>
             <p>(필수)</p>
