@@ -9,6 +9,7 @@ import {
 } from "__generated__/createAccountMutation";
 import { UserRole } from "__generated__/globalTypes";
 import { useHistory } from "react-router-dom";
+import { watch } from "fs";
 
 //  회원가입 뮤테이션
 export const CREATEEACCOUNT_MUTATION = gql`
@@ -77,6 +78,7 @@ export const SignUp2 = () => {
     formState: { isValid, errors },
     getValues,
     setValue,
+    watch
   } = useForm<CreateAccountInput_local>({
     mode: "onChange",
   });
@@ -103,6 +105,8 @@ export const SignUp2 = () => {
       num3Focus.current?.focus();
     }
   };
+
+  const a = watch(["phoneNum1"])
 
   const [SNSShowFlag, setSNSShowFlag] = useState(false);
   const checkRoleValue = (e: any) => {
