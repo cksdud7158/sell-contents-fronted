@@ -1,3 +1,5 @@
+// 로그인 방식 관련 글
+// https://velog.io/@gusdnr814/%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EC%9D%B8%EC%A6%9D-4%EA%B0%80%EC%A7%80-%EB%B0%A9%EB%B2%95
 import React from "react";
 import { gql, useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
@@ -6,7 +8,7 @@ import { LOCALSTORAGE_TOKEN, SERVICE_NAME } from "../../constants";
 import { Button } from "../../components/button";
 import { authTokenVar, isLoggedInVar } from "../../apollo";
 import { FormError } from "../../components/form-error";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import kakaoLogo from "images/kakaoLogo.svg";
 import {
@@ -30,7 +32,8 @@ export const Login = () => {
     mode: "onChange",
   });
 
-  const history = useHistory();
+
+
 
   const onCompleted = (data: loginMutation) => {
     const {
@@ -41,7 +44,6 @@ export const Login = () => {
       sessionStorage.setItem(LOCALSTORAGE_TOKEN, token);
       authTokenVar(token);
       isLoggedInVar(true);
-      history.push("/");
     }
   };
 

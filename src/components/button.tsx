@@ -22,7 +22,7 @@ export const Button: React.FC<IButtonProps> = ({
       className={`fullBtn  ${
         canClick
           ? "bg-blue-300 hover:bg-blue-500"
-          : "bg-gray-400  cursor-not-allowed"
+          : "bg-gray-400 hover:bg-gray-500  cursor-not-allowed"
       }`}
     >
       {loading ? "Loading..." : actionText}

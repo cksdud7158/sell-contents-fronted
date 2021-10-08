@@ -18,6 +18,7 @@ export const SignUp1 = () => {
       collectionAndUseOfPersonalInformation: false,
     },
   });
+  
 
   const history = useHistory();
   const nextBtn = () => {

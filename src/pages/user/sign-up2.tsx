@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 import { FormError } from "components/form-error";
 import { useForm } from "react-hook-form";
@@ -9,7 +9,6 @@ import {
 } from "__generated__/createAccountMutation";
 import { UserRole } from "__generated__/globalTypes";
 import { useHistory } from "react-router-dom";
-import { watch } from "fs";
 
 //  회원가입 뮤테이션
 export const CREATEEACCOUNT_MUTATION = gql`
@@ -78,7 +77,6 @@ export const SignUp2 = () => {
     formState: { isValid, errors },
     getValues,
     setValue,
-    watch
   } = useForm<CreateAccountInput_local>({
     mode: "onChange",
   });
@@ -89,24 +87,23 @@ export const SignUp2 = () => {
     else return "비밀번호가 동일하지않습니다.";
   };
 
-  const num2Focus = useRef<any>(null);
-  const num3Focus = useRef<any>(null);
+  const moveFocus = (id: any) => {
+    document.getElementById(id)?.focus();
+  };
 
   const phoneNumCheck1 = (e: any) => {
     const num = e.target.value;
     if (num?.length === 3) {
-      num2Focus.current?.focus();
+      moveFocus("phoneNum2");
     }
   };
 
   const phoneNumCheck2 = (e: any) => {
     const num = e.target.value;
     if (num?.length === 4) {
-      num3Focus.current?.focus();
+      moveFocus("phoneNum3");
     }
   };
-
-  const a = watch(["phoneNum1"])
 
   const [SNSShowFlag, setSNSShowFlag] = useState(false);
   const checkRoleValue = (e: any) => {
@@ -151,18 +148,37 @@ export const SignUp2 = () => {
         url: rest[`${theId}-SNSUrl`],
       }));
 
-      createAccountMutationTrigger({
-        variables: {
-          createAccountInput: {
-            email,
-            password,
-            nickName,
-            phoneNum: phoneNum1 + phoneNum2 + phoneNum3,
-            role,
-            snsUrls: snsObject,
+      console.log(snsObject)
+
+      if (snsObject[0].snsName) {
+        createAccountMutationTrigger({
+          variables: {
+            createAccountInput: {
+              email,
+              password,
+              nickName,
+              phoneNum: phoneNum1 + phoneNum2 + phoneNum3,
+              role,
+              snsUrls: snsObject,
+            },
           },
-        },
-      });
+        });
+      } else {
+        createAccountMutationTrigger({
+          variables: {
+            createAccountInput: {
+              email,
+              password,
+              nickName,
+              phoneNum: phoneNum1 + phoneNum2 + phoneNum3,
+              role,
+
+            },
+          },
+        });
+      }
+
+      
     }
   };
 
@@ -284,9 +300,9 @@ export const SignUp2 = () => {
                   message: "숫자만 입력해주세요",
                 },
               })}
+              id="phoneNum2"
               className="input w-1/3"
               maxLength={4}
-              ref={num2Focus}
               onChange={phoneNumCheck2}
             />
 
@@ -300,9 +316,9 @@ export const SignUp2 = () => {
                   message: "숫자만 입력해주세요",
                 },
               })}
+              id="phoneNum3"
               className="input w-1/3"
               maxLength={4}
-              ref={num3Focus}
             />
           </div>
 

@@ -9,6 +9,7 @@ import { useHistory } from "react-router-dom";
 import compnayLogo from "images/companyLogo.svg";
 import { GrMenu } from "react-icons/gr";
 import { BiUserCircle } from "react-icons/bi";
+import { LOCALSTORAGE_TOKEN } from "../constants";
 
 const navigation = [
   { name: "Dashboard", href: "/", current: true },
@@ -38,6 +39,12 @@ export const HeaderComponet: React.FC<IHeaderProps> = () => {
     } else {
       console.log("로그인 됨");
     }
+  };
+
+  const signOut = (e: any) => {
+    e.preventDefault();
+    sessionStorage.removeItem(LOCALSTORAGE_TOKEN);
+    history.go(0);
   };
 
   return (
@@ -168,6 +175,7 @@ export const HeaderComponet: React.FC<IHeaderProps> = () => {
                                     active ? "bg-gray-100" : "",
                                     "block px-4 py-2 text-sm text-gray-700"
                                   )}
+                                  onClick={signOut}
                                 >
                                   Sign out
                                 </a>
