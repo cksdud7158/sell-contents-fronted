@@ -25,25 +25,12 @@ export const LoggedOutRouter = () => {
 
       <div className="overflow-auto h-withoutHeader">
         <Switch>
-          <Route path="/" exact>
-            <MainPage />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/sign-up-1">
-            <SignUp1 />
-          </Route>
-          <Route path="/sign-up-2">
-            <SignUp2 />
-          </Route>
-          <Route path="/find-user-info">
-            <FindUserInfo />
-          </Route>
-          <Route>
-            <ErrorPage />
-            <div>로그인안됨 망할</div>
-          </Route>
+          <Route path="/" exact component={MainPage} />
+          <Route path="/login" component={Login} />
+          <Route path="/sign-up-1" component={SignUp1} />
+          <Route path="/sign-up-2" component={SignUp2} />
+          <Route path="/find-user-info" component={FindUserInfo} />
+          <Route component={ErrorPage} />
         </Switch>
       </div>
     </Router>

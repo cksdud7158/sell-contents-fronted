@@ -18,3 +18,4 @@ npm i -g apollo & npm i apollo
 npm i react-hook-form --save
 
 ## apollo-tool 을 전역으로 설치해야함
+npm i apollo -g
